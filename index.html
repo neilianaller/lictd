@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lantapan ICT Division — LGU Lantapan</title>
+
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+
+    <!--Bootstrap ================================================== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+
+    <!--vendor css ================================================== -->
+    <link rel="stylesheet" type="text/css" href="css/vendor.css" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/ictlogo_icon-white.png"
+    />
+  </head>
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="quote-left" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M3.691 6.292C5.094 4.771 7.217 4 10 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 6.925 10H10a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2H3a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789M20 20h-6a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789C16.094 4.771 18.217 4 21 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 17.925 10H21a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2"
+        />
+      </symbol>
+      <symbol id="arrow-down" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M4.5 10.5L12 18l7.5-7.5M12 18V3"
+        />
+      </symbol>
+      <symbol id="arrow-left" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+        />
+      </symbol>
+      <symbol id="facebook" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M15.12 5.32H17V2.14A26 26 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.05.28-1.73 1.76-1.73"
+        />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="close" viewBox="0 0 16 16">
+        <path
+          d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+        />
+      </symbol>
+
+      <symbol id="gmail" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 8.5l7.4 5.55c.36.27.84.27 1.2 0L20 8.5V18H4V8.5z"
+        />
+      </symbol>
+
+      <symbol id="github" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.54-1.36-1.32-1.72-1.32-1.72-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.78 1.3 3.46.99.1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.76.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.38.81 1.11.81 2.24v3.32c0 .32.22.69.82.57A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+        />
+      </symbol>
+    </svg>
+
+    <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div>
+
+    <nav
+      id="header-nav"
+      class="navbar navbar-expand-lg py-4"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid padding-side">
+        <a class="navbar-brand" href="index.html"
+          ><img src="images/ictlogo-15.png" alt="logo"
+        /></a>
+
+        <button
+          class="navbar-toggler shadow-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button
+              type="button"
+              class="btn-close text-reset shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav text-center align-items-center justify-content-end flex-grow-1"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link active pe-lg-5"
+                  aria-current="page"
+                  href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item pe-lg-4">
+                <a
+                  class="nav-link border-bottom border-2 border-primary"
+                  href="#projects"
+                  >Projects</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link pe-lg-5" href="#contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link pe-lg-5" href="#team">Team</a>
+              </li>
+            </ul>
+            <ul
+              class="d-flex d-lg-none list-unstyled justify-content-center mt-4"
+            >
+              <li>
+                <a class="nav-link mx-2" href="#">
+                  <svg class="social-icon" width="24" height="24">
+                    <use xlink:href="#facebook"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="hero" class="padding-medium position-relative">
+      <div class="container text-white">
+        <div
+          class="row flex-row-reverse justify-content-center align-items-center"
+        >
+          <div
+            class="col-lg-6 text-center"
+            data-aos="fade-up"
+            data-aos-duration="1400"
+          >
+            <div class="position-relative">
+              <img
+                src="images/banner-img.png"
+                alt="img"
+                class="img-fluid rounded-circle w-100 p-5"
+              />
+              <div class="position-absolute top-0">
+                <img
+                  src="images/banner-img-border.png"
+                  alt="img"
+                  class="img-fluid rounded-circle animated-border"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-5">
+            <h2
+              class="banner-size fw-medium display-3 my-4"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+            >
+              Digital Solutions, Excellent Public Service
+            </h2>
+            <p data-aos="fade-up" data-aos-duration="1400">
+              The Lantapan ICT Division drives digital innovation in local
+              governance, enhancing services, transparency, and citizen
+              engagement through technology.
+            </p>
+            <a
+              href="#projects"
+              class="btn btn-outline-primary mt-4 position-relative pe-5"
+              data-aos="fade-up"
+              data-aos-duration="1600"
+            >
+              view all works
+              <div
+                class="position-absolute top-50 end-0 translate-middle-y me-3"
+              >
+                <svg class="arrow-down p-1" width="28" height="28">
+                  <use xlink:href="#arrow-down"></use>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="padding-medium position-relative">
+      <div class="container text-white">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-8 text-center">
+            <p
+              class="letter-space text-primary fw-semibold fs-3 aos-init aos-animate"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              Projects
+            </p>
+          </div>
+        </div>
+        <div
+          class="d-flex align-items-start border border-white border-opacity-25 p-4 pb-0 rounded-4 mt-5 aos-init aos-animate"
+          data-aos="fade-up"
+          data-aos-duration="1400"
+        >
+          <div class="overflow-auto" id="style-1" style="height: 512px">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4 mb-4">
+                  <div class="image-zoom rounded-3">
+                    <a href="#"
+                      ><img
+                        src="images/projects_hris.png"
+                        alt="Project - HRIS"
+                        class="img-fluid rounded-3"
+                    /></a>
+                  </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                  <div class="image-zoom rounded-3">
+                    <a href="#"
+                      ><img
+                        src="images/projects_lantapanconnect.png"
+                        alt="Project - Lantapan Connect"
+                        class="img-fluid rounded-3"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="padding-medium position-relative">
+      <div class="container text-white">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-8 text-center">
+            <h4
+              class="banner-size fw-medium display-6 my-4 aos-init aos-animate"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+            >
+              Contact
+            </h4>
+            <p
+              class="letter-space text-primary fw-semibold fs-3 aos-init aos-animate"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              lictd@lantapan.gov.ph
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="padding-medium position-relative">
+      <div class="container text-white">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-8 text-center">
+            <p
+              class="letter-space text-primary fw-semibold fs-3 aos-init aos-animate"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              Team
+            </p>
+          </div>
+        </div>
+        <div
+          class="border border-white border-opacity-25 p-5 rounded-4 mt-5 aos-init aos-animate"
+          data-aos="fade-up"
+          data-aos-duration="1400"
+        >
+          <div class="container">
+            <div class="row my-5 align-items-center">
+              <div class="col-12 col-lg-6 text-center">
+                <img src="images/team_atty.png" alt="image" class="img-fluid" />
+              </div>
+              <div class="col-12 col-lg-6">
+                <h4 class="element-title text-uppercase mt-5 mt-xl-3">
+                  Atty. Aina
+                </h4>
+                <h6 class="text-primary">Municipal Administrator</h6>
+                <p class=""></p>
+                <div class="social-icon my-2">
+                  <ul class="d-flex gap-4 list-unstyled my-3">
+                    <li>
+                      <a
+                        class="nav-link mb-3"
+                        href="mailto:atty.ainatan@gmail.com"
+                      >
+                        <svg class="social-icon" width="24" height="24">
+                          <use xlink:href="#gmail"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr class="mid-break my-2" />
+            <div class="row flex-row-reverse my-5 align-items-center">
+              <div class="col-12 col-lg-6 text-center">
+                <img src="images/team_legargie.png" alt="image" class="img-fluid" />
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <h4 class="element-title text-uppercase mt-5 mt-xl-3">
+                  Legargie
+                </h4>
+                <h6 class="text-primary">Full-stack Developer</h6>
+                <p class=""></p>
+                <div class="social-icon my-2">
+                  <ul class="d-flex gap-4 list-unstyled my-3">
+                    <li>
+                      <a
+                        class="nav-link mb-3"
+                        href="mailto:legargie.dagbay@lantapan.gov.ph"
+                      >
+                        <svg class="social-icon" width="24" height="24">
+                          <use xlink:href="#gmail"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr class="mid-break my-2" />
+            <div class="row my-5 d-xl-flex align-items-center">
+              <div class="col-12 col-lg-6 text-center">
+                <img src="images/team_neil.png" alt="image" class="img-fluid" />
+              </div>
+              <div class="col-12 col-lg-6">
+                <h4 class="element-title text-uppercase mt-5 mt-xl-3">
+                  Neil Ian
+                </h4>
+                <h6 class="text-primary">Full-stack Developer</h6>
+                <p class=""></p>
+                <div class="social-icon my-2">
+                  <ul class="d-flex gap-4 list-unstyled my-3">
+                    <li>
+                      <a
+                        class="nav-link mb-3"
+                        href="mailto:neilian.aller@gmail.com"
+                      >
+                        <svg class="social-icon" width="24" height="24">
+                          <use xlink:href="#gmail"></use>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        class="nav-link mb-3"
+                        href="https://github.com/neilianaller/"
+                      >
+                        <svg class="social-icon" width="24" height="24">
+                          <use xlink:href="#github"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="socials" class="position-fixed bottom-0 start-0 ms-5 mb-5">
+      <ul class="d-none d-lg-block list-unstyled justify-content-center">
+        <li>
+          <a class="nav-link mb-3" href="#">
+            <svg class="social-icon" width="24" height="24">
+              <use xlink:href="#facebook"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- script ================================================== -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+    <!-- Bootstarp script ================================================== -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Swiper script ================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!--iconify script ================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
