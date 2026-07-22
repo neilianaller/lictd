@@ -155,7 +155,7 @@ class AppDirectory {
         `).join('')}
       </div>
       <div class="mt-6 text-xs text-center text-slate-500">
-        Status: <span class="text-emerald-400 uppercase">${stats.status}</span> | Last updated: Just now
+        Status: <span class="text-emerald-400 uppercase">${stats.status}</span> | Last updated: ${stats.last_update}
       </div>
     `;
   }

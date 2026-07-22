@@ -1,6 +1,7 @@
 {
   "systemId": "biometrics",
   "status": "online",
+  "last_update": "2026-07-22",
   "metrics": [
     {
       "label": "Employees",
