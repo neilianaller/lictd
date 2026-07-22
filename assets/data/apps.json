@@ -1,10 +1,9 @@
 [
   {
-    "id": "rpt-system",
-    "title": "Real Property Tax System",
+    "id": "biometrics",
+    "title": "Biometric Logs Systems",
     "tagline": "Automated land valuation & billing portal",
     "category": "Finance",
-    "url": "https://rpt.lgu.gov.ph",
     "statsEndpoint": "/mock-api/rpt-stats.json",
     "status": "online",
     "accessLevel": "Internal",
@@ -15,7 +14,6 @@
     "title": "Social Assistance Tracker",
     "tagline": "Financial assistance disbursement registry",
     "category": "Social Services",
-    "url": "https://welfare.lgu.gov.ph",
     "statsEndpoint": "/mock-api/social-welfare-stats.json",
     "status": "online",
     "accessLevel": "Public",

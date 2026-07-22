@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LICTD — LGU ICT Division Portal</title>
-  
+  <title>LICTD</title>
+  <link rel="icon" type="image/png" href="assets/images/ictlogo_icon-whitecopy.png">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
-  
+
   <!-- Three.js and GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body class="antialiased selection:bg-cyan-500 selection:text-slate-900">
 
   <!-- 3D Background -->
   <div id="three-canvas-container"></div>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center px-6">
-    <div class="text-center max-w-4xl z-10 glass-panel p-10 rounded-2xl mx-auto border border-white/10">
-      <h2 class="text-cyan-400 font-bold tracking-widest uppercase text-sm mb-4">Welcome to</h2>
-      <h1 class="text-6xl md:text-8xl font-extrabold mb-6 tracking-tight">
-        <span class="gradient-text">LICTD</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-slate-300 font-light max-w-2xl mx-auto">
-        Next-Gen Municipal Digital Infrastructure.
-      </p>
+  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+    <!-- Logo Container -->
+    <div class="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[550px] lg:h-[550px] flex items-center justify-center z-10 mx-auto mb-10">
+      <!-- Outer ring to rotate on scroll -->
+      <img src="assets/images/ictlogo-r-01.png" id="logo-ring" alt="LICTD Outer Ring"
+        class="absolute inset-0 w-full h-full object-contain">
+      <!-- Inner logo -->
+      <img src="assets/images/ictlogo-r-00.png" alt="LICTD Logo" class="relative w-[80%] h-[80%] object-contain">
     </div>
-    
+
     <!-- Scroll indicator -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce-slow opacity-70">
+    <div class="mt-8 flex flex-col items-center animate-bounce-slow opacity-70">
       <span class="text-xs text-cyan-400 uppercase tracking-widest mb-2 font-semibold">Explore Systems</span>
       <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -49,24 +51,25 @@
 
   <!-- App Directory Section -->
   <section class="relative z-10 py-24 px-6 md:px-12 max-w-7xl mx-auto" id="directory">
-    
+
     <!-- Filter Bar -->
-    <div class="glass-panel p-6 rounded-2xl mb-12 flex flex-col md:flex-row gap-6 items-center justify-between border border-white/10">
-      <div class="w-full md:w-1/3 relative">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <svg class="h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <input type="text" id="search-input" class="w-full bg-slate-900/50 border border-slate-700 text-white text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block pl-10 p-2.5 transition-colors placeholder-slate-400" placeholder="Search systems...">
-      </div>
-      
+    <div class="glass-panel p-6 rounded-2xl mb-12 flex items-center justify-center border border-white/10">
       <div class="flex flex-wrap gap-2 justify-center" id="category-filters">
-        <button class="category-filter bg-cyan-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-category="All">All</button>
-        <button class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10" data-category="Finance">Finance</button>
-        <button class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10" data-category="Social Services">Social Services</button>
-        <button class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10" data-category="Internal">Internal</button>
-        <button class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10" data-category="Citizen Services">Citizen Services</button>
+        <button
+          class="category-filter bg-cyan-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          data-category="All">All</button>
+        <button
+          class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10"
+          data-category="Finance">Finance</button>
+        <button
+          class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10"
+          data-category="Social Services">Social Services</button>
+        <button
+          class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10"
+          data-category="Internal">Internal</button>
+        <button
+          class="category-filter glass-panel text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/10"
+          data-category="Citizen Services">Citizen Services</button>
       </div>
     </div>
 
@@ -77,7 +80,8 @@
   </section>
 
   <!-- Modal Overlay -->
-  <div id="modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 hidden">
+  <div id="modal-overlay"
+    class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 hidden">
     <div class="modal-content glass-panel w-full max-w-2xl rounded-2xl mx-4 overflow-hidden border border-cyan-500/30">
       <!-- Modal Header -->
       <div class="px-6 py-4 border-b border-slate-700/50 flex justify-between items-center bg-slate-800/30">
@@ -99,4 +103,5 @@
   <script type="module" src="assets/js/main.js"></script>
   <script src="assets/js/three-scene.js"></script>
 </body>
+
 </html>

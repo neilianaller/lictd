@@ -5,10 +5,7 @@ class AppDirectory {
     this.apps = [];
     this.filteredApps = [];
     this.currentCategory = 'All';
-    this.searchQuery = '';
-
     this.gridContainer = document.getElementById('apps-grid');
-    this.searchInput = document.getElementById('search-input');
     this.categoryFilters = document.querySelectorAll('.category-filter');
     this.modal = document.getElementById('modal-overlay');
     this.closeModalBtn = document.getElementById('close-modal');
@@ -37,11 +34,6 @@ class AppDirectory {
   }
 
   setupEventListeners() {
-    this.searchInput.addEventListener('input', (e) => {
-      this.searchQuery = e.target.value.toLowerCase();
-      this.filterApps();
-    });
-
     this.categoryFilters.forEach(btn => {
       btn.addEventListener('click', (e) => {
         this.categoryFilters.forEach(b => {
@@ -51,7 +43,7 @@ class AppDirectory {
         const target = e.target;
         target.classList.remove('glass-panel', 'text-white');
         target.classList.add('bg-cyan-500', 'text-slate-900');
-        
+
         this.currentCategory = target.dataset.category;
         this.filterApps();
       });
@@ -65,10 +57,8 @@ class AppDirectory {
 
   filterApps() {
     this.filteredApps = this.apps.filter(app => {
-      const matchesSearch = app.title.toLowerCase().includes(this.searchQuery) || 
-                            app.tagline.toLowerCase().includes(this.searchQuery);
       const matchesCategory = this.currentCategory === 'All' || app.category === this.currentCategory;
-      return matchesSearch && matchesCategory;
+      return matchesCategory;
     });
     this.render();
   }
@@ -96,7 +86,6 @@ class AppDirectory {
           <p class="text-slate-400 text-sm mb-6">${app.tagline}</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-700/50 flex flex-col gap-2">
-          <a href="${app.url}" target="_blank" class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-center text-sm font-medium transition-colors border border-white/10">Launch System</a>
           <button class="view-metrics-btn w-full py-2 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-lg text-center text-sm font-medium transition-all shadow-lg shadow-cyan-500/20" data-endpoint="${app.statsEndpoint}" data-title="${app.title}">View Live Metrics</button>
         </div>
       </div>
@@ -117,8 +106,8 @@ class AppDirectory {
         const centerY = rect.height / 2;
         const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg
         const rotateY = ((x - centerX) / centerX) * 10;
-        
-        card.style.transform = \`perspective(1000px) rotateX(\${rotateX}deg) rotateY(\${rotateY}deg) scale3d(1.02, 1.02, 1.02)\`;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
       });
 
       card.addEventListener('mouseleave', () => {
@@ -139,9 +128,9 @@ class AppDirectory {
   }
 
   async openModal(title, endpoint) {
-    this.modalTitle.textContent = \`\${title} - Live Metrics\`;
+    this.modalTitle.textContent = `${title} - Live Metrics`;
     this.modalBody.innerHTML = '<div class="flex justify-center items-center py-12"><div class="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div></div>';
-    
+
     this.modal.classList.remove('hidden');
     // Small delay to allow display:block to apply before animating opacity
     setTimeout(() => {
@@ -150,30 +139,30 @@ class AppDirectory {
     }, 10);
 
     const stats = await StatsFetcher.fetchStats(endpoint);
-    
+
     if (!stats) {
       this.modalBody.innerHTML = '<div class="text-center py-8 text-red-400"><p>Stats Temporarily Unavailable</p></div>';
       return;
     }
 
-    this.modalBody.innerHTML = \`
+    this.modalBody.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-        \${stats.metrics.map(metric => \`
+        ${stats.metrics.map(metric => `
           <div class="glass-panel bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 text-center">
-            <p class="text-sm text-slate-400 mb-2">\${metric.label}</p>
-            <p class="text-3xl font-bold gradient-text">\${metric.type === 'currency' ? '₱' : ''}\${this.formatNumber(metric.value)}</p>
+            <p class="text-sm text-slate-400 mb-2">${metric.label}</p>
+            <p class="text-3xl font-bold gradient-text">${metric.type === 'currency' ? '₱' : ''}${this.formatNumber(metric.value)}</p>
           </div>
-        \`).join('')}
+        `).join('')}
       </div>
       <div class="mt-6 text-xs text-center text-slate-500">
-        Status: <span class="text-emerald-400 uppercase">\${stats.status}</span> | Last updated: Just now
+        Status: <span class="text-emerald-400 uppercase">${stats.status}</span> | Last updated: Just now
       </div>
-    \`;
+    `;
   }
 
   formatNumber(val) {
     // Simple formatter, in a real app might use animation counters
-    const num = parseFloat(val.toString().replace(/[^0-9.-]+/g,""));
+    const num = parseFloat(val.toString().replace(/[^0-9.-]+/g, ""));
     if (isNaN(num)) return val;
     return num.toLocaleString();
   }
