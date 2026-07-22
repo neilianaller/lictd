@@ -150,7 +150,7 @@ class AppDirectory {
         ${stats.metrics.map(metric => `
           <div class="glass-panel bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 text-center">
             <p class="text-sm text-slate-400 mb-2">${metric.label}</p>
-            <p class="text-3xl font-bold gradient-text">${metric.type === 'currency' ? '₱' : ''}${this.formatNumber(metric.value)}</p>
+            <p class="${metric.type === 'date' ? 'text-2xl' : 'text-3xl'} font-bold gradient-text">${metric.type === 'currency' ? '₱' : ''}${this.formatValue(metric.value, metric.type)}</p>
           </div>
         `).join('')}
       </div>
@@ -160,7 +160,8 @@ class AppDirectory {
     `;
   }
 
-  formatNumber(val) {
+  formatValue(val, type) {
+    if (type === 'date') return val;
     // Simple formatter, in a real app might use animation counters
     const num = parseFloat(val.toString().replace(/[^0-9.-]+/g, ""));
     if (isNaN(num)) return val;

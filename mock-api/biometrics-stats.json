@@ -1,0 +1,16 @@
+{
+  "systemId": "biometrics",
+  "status": "online",
+  "metrics": [
+    {
+      "label": "Employees",
+      "value": "504",
+      "type": "number"
+    },
+    {
+      "label": "Started since",
+      "value": "March 2025",
+      "type": "date"
+    }
+  ]
+}

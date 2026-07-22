@@ -2,9 +2,9 @@
   {
     "id": "biometrics",
     "title": "Biometric Logs Systems",
-    "tagline": "Automated land valuation & billing portal",
-    "category": "Finance",
-    "statsEndpoint": "/mock-api/rpt-stats.json",
+    "tagline": "View and print biometric logs",
+    "category": "Internal",
+    "statsEndpoint": "/mock-api/biometrics-stats.json",
     "status": "online",
     "accessLevel": "Internal",
     "icon": "calculator"
