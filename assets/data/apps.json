@@ -1,0 +1,24 @@
+[
+  {
+    "id": "rpt-system",
+    "title": "Real Property Tax System",
+    "tagline": "Automated land valuation & billing portal",
+    "category": "Finance",
+    "url": "https://rpt.lgu.gov.ph",
+    "statsEndpoint": "/mock-api/rpt-stats.json",
+    "status": "online",
+    "accessLevel": "Internal",
+    "icon": "calculator"
+  },
+  {
+    "id": "social-welfare",
+    "title": "Social Assistance Tracker",
+    "tagline": "Financial assistance disbursement registry",
+    "category": "Social Services",
+    "url": "https://welfare.lgu.gov.ph",
+    "statsEndpoint": "/mock-api/social-welfare-stats.json",
+    "status": "online",
+    "accessLevel": "Public",
+    "icon": "heart-handshake"
+  }
+]

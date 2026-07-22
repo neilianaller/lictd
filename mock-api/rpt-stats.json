@@ -1,0 +1,9 @@
+{
+  "systemId": "rpt-system",
+  "status": "online",
+  "metrics": [
+    { "label": "Queries Served Today", "value": "1420", "type": "number" },
+    { "label": "Entries Encoded", "value": "890", "type": "number" },
+    { "label": "Collections Processed", "value": "1200000", "type": "currency" }
+  ]
+}
