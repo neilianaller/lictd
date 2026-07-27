@@ -31,7 +31,7 @@ def trigger_remote_pull():
     remote_command = (
         f"cd {remote_path} && "
         f"sudo git pull origin main && "
-        f"sudo rm -rf node_modules package-lock.json && "
+        # f"sudo rm -rf node_modules package-lock.json && "
         f"sudo npm install && "
         f"sudo npm run build && "
         f"sudo systemctl restart apache2"
