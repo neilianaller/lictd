@@ -30,21 +30,20 @@ def trigger_remote_pull():
 
     remote_command = (
         f"cd {remote_path} && "
-        f"sudo git pull origin main && "
-        # f"sudo rm -rf node_modules package-lock.json && "
-        f"sudo npm install && "
-        f"sudo npm run build && "
-        f"sudo systemctl restart apache2"
+        f"git pull origin main && "
+        f"npm install && "
+        f"npm run build && "
+        f"pm2 restart lictd"
     )
 
-    print(f"🚀 Triggering pull and build on {instance_name}...")
+    print(f"Triggering pull and build on {instance_name}...")
 
     subprocess.run([
         "gcloud", "compute", "ssh", instance_name,
         "--zone", zone,
         "--project", project,
         "--command", remote_command
-    ], shell=True)
+    ], check=True)
 
 if __name__ == "__main__":
     run_git_commands()
