@@ -35,6 +35,7 @@ def trigger_remote_pull():
         f"sudo npm run build && "
         f"sudo pm2 restart lictd"
     )
+    
 
     print(f"Triggering pull and build on {instance_name}...")
 
