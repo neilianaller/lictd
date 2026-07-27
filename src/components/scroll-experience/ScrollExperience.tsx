@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useScroll } from "framer-motion";
 import Lenis from "lenis";
 import LogoRing from "./LogoRing";
-import AppCardDeal from "./AppCardDeal";
+import AppDashboard from "./AppDashboard";
 import TeamSection from "./TeamSection";
 import HeritageSection from "./HeritageSection";
 
@@ -20,8 +20,8 @@ export default function ScrollExperience() {
   // Setup Lenis for smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.1, // Smoothness
-      wheelMultiplier: 1, // Scroll speed
+      lerp: 0.08, // Smoothness
+      wheelMultiplier: 0.4, // Low scroll sensitivity
     });
 
     function raf(time: number) {
@@ -35,15 +35,15 @@ export default function ScrollExperience() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height: "500vh" }}>
+    <div ref={containerRef} className="relative w-full" style={{ height: "800vh" }}>
       {/* Fixed Background Gradient */}
       <div className="fixed inset-0 bg-void-gradient -z-10" />
 
       {/* Stage 0 & 1: Logo Intro & Dock */}
       <LogoRing progress={scrollYProgress} />
       
-      {/* Stage 2: App Cards Deal */}
-      <AppCardDeal progress={scrollYProgress} />
+      {/* Stage 2: App Dashboard Table */}
+      <AppDashboard progress={scrollYProgress} />
 
       {/* Stage 3: Team Section */}
       <TeamSection progress={scrollYProgress} />

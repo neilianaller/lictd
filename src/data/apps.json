@@ -4,32 +4,120 @@
     "name": "LGU Website",
     "slug": "website",
     "status": "active",
-    "description": "The official website of the Local Government Unit of Lantapan",
+    "developer": "Neil",
+    "lastUpdate": "2025-01-10",
     "isPublic": true,
-    "icon": ""
+    "icon": "/images/apps/lguseal.png",
+    "link": "https://lantapan.gov.ph"
+  },
+  {
+    "id": "buksu",
+    "name": "BukSU Lantapan Campus Website",
+    "slug": "buksu",
+    "status": "active",
+    "developer": "Neil",
+    "lastUpdate": "2024-11-05",
+    "isPublic": true,
+    "icon": "/images/apps/lguseal.png",
+    "link": "https://buksu.lantapan.gov.ph/"
+  },
+  {
+    "id": "biometrics",
+    "name": "Biometric Logs System",
+    "slug": "biometrics",
+    "status": "active",
+    "developer": "Neil",
+    "lastUpdate": "2024-08-12",
+    "isPublic": false,
+    "icon": "/images/apps/biometrics.png",
+    "link": null
+  },
+  {
+    "id": "awbs",
+    "name": "AWBS",
+    "slug": "awbs",
+    "status": "development",
+    "developer": "Legargie",
+    "lastUpdate": "2025-03-15",
+    "isPublic": false,
+    "icon": "/images/apps/systems_awbs.png",
+    "link": null
+  },
+  {
+    "id": "gso",
+    "name": "GSO Inventory Management System",
+    "slug": "gso",
+    "status": "development",
+    "developer": "Legargie",
+    "lastUpdate": "2025-02-20",
+    "isPublic": false,
+    "icon": "/images/apps/systems_gso.png",
+    "link": null
+  },
+  {
+    "id": "aics",
+    "name": "AICS Information System",
+    "slug": "aics",
+    "status": "active",
+    "developer": "Neil",
+    "lastUpdate": "2025-06-01",
+    "isPublic": false,
+    "icon": "/images/apps/systems_ims.png",
+    "link": null
+  },
+  {
+    "id": "jobs",
+    "name": "Job Portal",
+    "slug": "jobs",
+    "status": "development",
+    "developer": "Neil",
+    "lastUpdate": "2025-05-18",
+    "isPublic": true,
+    "icon": "/images/apps/systems_jobs.png",
+    "link": null
+  },
+  {
+    "id": "ltmg",
+    "name": "Lantapan Traffic Violation Management System",
+    "slug": "ltmg",
+    "status": "development",
+    "developer": "Legargie",
+    "lastUpdate": "2025-01-30",
+    "isPublic": false,
+    "icon": "/images/apps/systems_ltmg.png",
+    "link": null
+  },
+  {
+    "id": "pwd",
+    "name": "PWD Registry",
+    "slug": "pwd",
+    "status": "active",
+    "developer": "Neil",
+    "lastUpdate": "2024-08-12",
+    "isPublic": false,
+    "icon": "/images/apps/systems_pwd.png",
+    "link": null
+  },
+  {
+    "id": "cris",
+    "name": "Civil Registry Information System",
+    "slug": "cris",
+    "status": "inactive",
+    "developer": "Neil",
+    "lastUpdate": "2024-08-12",
+    "isPublic": false,
+    "icon": "/images/apps/lguseal.png",
+    "link": null
   },
   {
     "id": "hris",
-    "name": "LGU HRIS",
+    "name": "Human Resource Information System",
     "slug": "hris",
-    "status": "maintenance",
-    "description": "Human Resource Information System for internal LGU employees and staff management.",
-    "isPublic": false
-  },
-  {
-    "id": "old-portal",
-    "name": "Legacy Portal",
-    "slug": "old-portal",
-    "status": "deprecated",
-    "description": "Legacy citizen portal, slated for decommissioning later this year.",
-    "isPublic": true
-  },
-  {
-    "id": "document-tracker",
-    "name": "DocuTrack",
-    "slug": "document-tracker",
-    "status": "active",
-    "description": "Internal routing and document tracking system across departments.",
-    "isPublic": false
+    "status": "inactive",
+    "developer": "Neil",
+    "lastUpdate": "2024-08-12",
+    "isPublic": false,
+    "icon": "/images/apps/lguseal.png",
+    "link": null
   }
 ]
