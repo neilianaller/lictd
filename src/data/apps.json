@@ -1,0 +1,34 @@
+[
+  {
+    "id": "e-bpls",
+    "name": "e-BPLS",
+    "slug": "e-bpls",
+    "status": "active",
+    "description": "Electronic Business Permit and Licensing System for streamlined application and processing.",
+    "isPublic": true
+  },
+  {
+    "id": "hris",
+    "name": "LGU HRIS",
+    "slug": "hris",
+    "status": "maintenance",
+    "description": "Human Resource Information System for internal LGU employees and staff management.",
+    "isPublic": false
+  },
+  {
+    "id": "old-portal",
+    "name": "Legacy Portal",
+    "slug": "old-portal",
+    "status": "deprecated",
+    "description": "Legacy citizen portal, slated for decommissioning later this year.",
+    "isPublic": true
+  },
+  {
+    "id": "document-tracker",
+    "name": "DocuTrack",
+    "slug": "document-tracker",
+    "status": "active",
+    "description": "Internal routing and document tracking system across departments.",
+    "isPublic": false
+  }
+]

@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-void: #060B18;
+  --bg-gradient-start: #0A1128;
+  --bg-gradient-end: #050810;
+  --accent-cyan: #4FD8E8;
+  --accent-gold: #E8C468;
+  --ink-100: #F4F7FF;
+  --ink-400: #7C8AAE;
+}
+
+body {
+  color: var(--ink-100);
+  background-color: var(--bg-void);
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure global box sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Base overscroll behavior for scroll jacking */
+html {
+  overscroll-behavior: none;
+}
