@@ -1,9 +1,0 @@
-{
-  "systemId": "social-welfare",
-  "status": "online",
-  "metrics": [
-    { "label": "Beneficiaries Served", "value": "2450", "type": "number" },
-    { "label": "Funds Disbursed", "value": "4500000", "type": "currency" },
-    { "label": "Pending Applications", "value": "324", "type": "number" }
-  ]
-}
