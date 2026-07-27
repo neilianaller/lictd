@@ -64,10 +64,6 @@ export default function HeritageSection() {
           </a>
         </motion.div>
 
-        {/* Footer note */}
-        <p className="text-xs text-ink-400/40 font-mono mt-8">
-          © {new Date().getFullYear()} Lantapan ICT Division. All rights reserved.
-        </p>
       </div>
     </section>
   );

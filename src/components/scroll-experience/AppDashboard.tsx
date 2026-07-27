@@ -106,70 +106,116 @@ export default function AppDashboard() {
           </div>
 
           {/* Rows */}
-          {apps.map((app, i) => {
+          {[...apps].sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => {
             const showLink = app.isPublic && app.status === "active" && app.link;
             return (
               <motion.div
                 key={app.id}
-                className={`grid grid-cols-[32px_40px_1fr_auto] md:grid-cols-[48px_48px_1fr_140px_140px_110px_100px] gap-4 items-center px-6 py-4 hover:bg-white/[0.04] transition-colors cursor-default ${i < apps.length - 1 ? "border-b border-white/5" : ""}`}
+                className={`px-4 md:px-6 py-4 hover:bg-white/[0.04] transition-colors ${i < apps.length - 1 ? "border-b border-white/5" : ""}`}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: i * 0.04 }}
               >
-                {/* Status */}
-                <StatusDot status={app.status as Status} />
+                {/* ── MOBILE LAYOUT ── */}
+                <div className="flex md:hidden items-start gap-3">
+                  {/* Status + Icon stacked left */}
+                  <div className="flex flex-col items-center gap-2 pt-1 flex-shrink-0">
+                    <StatusDot status={app.status as Status} />
+                    <div className="relative w-8 h-8 flex-shrink-0">
+                      {app.icon && (
+                        <Image src={app.icon} alt={app.name} fill className="object-contain" />
+                      )}
+                    </div>
+                  </div>
 
-                {/* Icon */}
-                <div className="relative w-8 h-8 flex-shrink-0">
-                  {app.icon && (
-                    <Image src={app.icon} alt={app.name} fill className="object-contain" />
-                  )}
+                  {/* Info block */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-display font-semibold text-ink-100 leading-snug">
+                      {app.name}
+                    </p>
+                    <p className="text-xs text-ink-400 font-mono mt-0.5">{app.developer}</p>
+                    <p className="text-xs text-ink-400/60 font-mono">
+                      {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
+                        year: "numeric", month: "short", day: "numeric",
+                      })}
+                    </p>
+                    {/* Action buttons */}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <a
+                        href={`/apps/${app.slug}`}
+                        className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1 rounded-full transition-all hover:bg-accent-cyan/5"
+                      >
+                        ⎔ Stats
+                      </a>
+                      {showLink && (
+                        <a
+                          href={app.link!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-accent-cyan hover:text-white border border-accent-cyan/30 hover:border-accent-cyan px-3 py-1 rounded-full transition-all hover:bg-accent-cyan/10"
+                        >
+                          ↗ Visit
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Name */}
-                <span className="text-sm font-display font-semibold text-ink-100 truncate">
-                  {app.name}
-                </span>
+                {/* ── DESKTOP LAYOUT ── */}
+                <div className="hidden md:grid grid-cols-[48px_48px_1fr_140px_140px_110px_100px] gap-4 items-center">
+                  {/* Status */}
+                  <StatusDot status={app.status as Status} />
 
-                {/* Developer — hidden on mobile */}
-                <span className="hidden md:block text-sm text-ink-400 font-mono">
-                  {app.developer}
-                </span>
+                  {/* Icon */}
+                  <div className="relative w-8 h-8 flex-shrink-0">
+                    {app.icon && (
+                      <Image src={app.icon} alt={app.name} fill className="object-contain" />
+                    )}
+                  </div>
 
-                {/* Last Update — hidden on mobile */}
-                <span className="hidden md:block text-sm text-ink-400 font-mono">
-                  {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
+                  {/* Name */}
+                  <span className="text-sm font-display font-semibold text-ink-100 truncate">
+                    {app.name}
+                  </span>
 
-                {/* View Stats — hidden on mobile */}
-                <div className="hidden md:flex justify-center">
-                  <a
-                    href={`/apps/${app.slug}`}
-                    className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/5 whitespace-nowrap"
-                  >
-                    ⎔ Stats
-                  </a>
-                </div>
+                  {/* Developer */}
+                  <span className="text-sm text-ink-400 font-mono">
+                    {app.developer}
+                  </span>
 
-                {/* Link */}
-                <div className="flex justify-end">
-                  {showLink ? (
+                  {/* Last Update */}
+                  <span className="text-sm text-ink-400 font-mono">
+                    {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
+                      year: "numeric", month: "short", day: "numeric",
+                    })}
+                  </span>
+
+                  {/* Stats */}
+                  <div className="flex justify-center">
                     <a
-                      href={app.link!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-mono text-accent-cyan hover:text-white border border-accent-cyan/30 hover:border-accent-cyan px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/10 whitespace-nowrap"
+                      href={`/apps/${app.slug}`}
+                      className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/5 whitespace-nowrap"
                     >
-                      ↗ Visit
+                      ⎔ Stats
                     </a>
-                  ) : (
-                    <span className="text-xs font-mono text-ink-400/30 px-3 py-1.5">—</span>
-                  )}
+                  </div>
+
+                  {/* Link */}
+                  <div className="flex justify-end">
+                    {showLink ? (
+                      <a
+                        href={app.link!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono text-accent-cyan hover:text-white border border-accent-cyan/30 hover:border-accent-cyan px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/10 whitespace-nowrap"
+                      >
+                        ↗ Visit
+                      </a>
+                    ) : (
+                      <span className="text-xs font-mono text-ink-400/30 px-3 py-1.5">—</span>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
