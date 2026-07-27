@@ -8,7 +8,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hub.lantapan.gov.ph"),
-  title: "LICTD Systems Hub",
+  title: "LICTD Systems Hub | Lantapan ICT Division Digital Portal",
   description: "Lantapan ICT Division Apps and Systems. Centralized dashboard for all LGU digital platforms and internal systems.",
   icons: {
     icon: "/images/ictlogo_icon-white.png",
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     apple: "/images/ictlogo_icon-white.png",
   },
   openGraph: {
-    title: "LICTD Systems Hub",
+    title: "LICTD Systems Hub | Lantapan ICT Division Digital Portal",
     description: "Lantapan ICT Division Apps and Systems. Centralized dashboard for all LGU digital platforms and internal systems.",
     url: "https://hub.lantapan.gov.ph",
     siteName: "LICTD Systems Hub",
     images: [
       {
-        url: "/images/social-tag.png",
+        url: "https://hub.lantapan.gov.ph/images/social-tag.png",
         width: 1200,
         height: 630,
         alt: "LICTD Systems Hub",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LICTD Systems Hub",
+    title: "LICTD Systems Hub | Lantapan ICT Division Digital Portal",
     description: "Lantapan ICT Division Apps and Systems. Centralized dashboard for all LGU digital platforms and internal systems.",
-    images: ["/images/social-tag.png"],
+    images: ["https://hub.lantapan.gov.ph/images/social-tag.png"],
   },
 };
 
