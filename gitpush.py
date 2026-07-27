@@ -27,7 +27,7 @@ def trigger_remote_deploy():
     instance_name = "lantapan-prod"
     zone = "asia-southeast1-b"
     project = "proj-lantapan"
-    remote_path = "/var/www/your-repo-name"  # Path to your Node.js app folder
+    remote_path = "/var/www/lictd"  # Path to your Node.js app folder
     pm2_process_name = "webapp"             # The --name you gave your PM2 process
 
     # Chain the commands together: pull -> install production deps -> build -> restart PM2
