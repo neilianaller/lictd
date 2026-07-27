@@ -5,6 +5,7 @@ import { useScroll } from "framer-motion";
 import Lenis from "lenis";
 import LogoRing from "./LogoRing";
 import AppCardDeal from "./AppCardDeal";
+import TeamSection from "./TeamSection";
 
 export default function ScrollExperience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,9 @@ export default function ScrollExperience() {
       
       {/* Stage 2: App Cards Deal */}
       <AppCardDeal progress={scrollYProgress} />
+
+      {/* Stage 3: Team Section */}
+      <TeamSection progress={scrollYProgress} />
     </div>
   );
 }

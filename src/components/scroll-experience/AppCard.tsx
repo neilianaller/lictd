@@ -39,32 +39,41 @@ export default function AppCard({
   const exitStart = enterStart + step; 
   const exitEnd = exitStart + step * 0.6;
 
-  // The last card shouldn't exit during this stage. It stays until Stage 3.
+  // The last card shouldn't exit completely. It recedes during Stage 3 (0.55-0.75)
+  // and fades away fully in Stage 4 (0.75-0.80).
   const isLast = index === total - 1;
+  const stage4Start = 0.75;
+  const stage4End = 0.80;
 
   // Carousel transform mapping
   const rotateY = useTransform(
     progress, 
-    [enterStart, enterEnd, exitStart, exitEnd], 
-    [-90, 0, 0, isLast ? 0 : 90] 
+    [enterStart, enterEnd, exitStart, exitEnd, stage4Start, stage4End], 
+    [-90, 0, 0, isLast ? 0 : 90, isLast ? 0 : 90, isLast ? 0 : 90] 
   );
   
   const x = useTransform(
     progress, 
-    [enterStart, enterEnd, exitStart, exitEnd], 
-    ["-50vw", "0vw", "0vw", isLast ? "0vw" : "50vw"] 
+    [enterStart, enterEnd, exitStart, exitEnd, stage4Start, stage4End], 
+    ["-50vw", "0vw", "0vw", isLast ? "0vw" : "50vw", isLast ? "0vw" : "50vw", isLast ? "0vw" : "50vw"] 
   );
   
   const opacity = useTransform(
     progress, 
-    [enterStart, enterEnd, exitStart, exitEnd], 
-    [0, 1, 1, isLast ? 1 : 0]
+    [enterStart, enterEnd, exitStart, exitEnd, stage4Start, stage4End], 
+    [0, 1, 1, isLast ? 0.15 : 0, isLast ? 0.15 : 0, 0]
   );
   
   const z = useTransform(
     progress, 
-    [enterStart, enterEnd, exitStart, exitEnd], 
-    [-400, 0, 0, isLast ? 0 : -400]
+    [enterStart, enterEnd, exitStart, exitEnd, stage4Start, stage4End], 
+    [-400, 0, 0, isLast ? -200 : -400, isLast ? -200 : -400, isLast ? -400 : -400]
+  );
+  
+  const scale = useTransform(
+    progress,
+    [enterStart, enterEnd, exitStart, exitEnd, stage4Start, stage4End],
+    [1, 1, 1, isLast ? 0.92 : 1, isLast ? 0.92 : 1, isLast ? 0.85 : 1]
   );
 
   return (
@@ -74,6 +83,7 @@ export default function AppCard({
         rotateY,
         x,
         z,
+        scale,
         opacity,
         transformOrigin: "center center",
         transformStyle: "preserve-3d"
