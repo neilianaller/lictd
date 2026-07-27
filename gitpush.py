@@ -55,6 +55,10 @@ def trigger_remote_deploy():
         print("🎉 Deployment completed successfully!")
     except subprocess.CalledProcessError as e:
         print(f"❌ Remote deployment failed: {e}")
+        # Add these two lines to see the real error:
+        if e.stderr:
+            print(f"Error details:\n{e.stderr.decode()}")
+
 
 if __name__ == "__main__":
     try:
