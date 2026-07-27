@@ -1,27 +1,30 @@
 "use client";
 
-import { motion, MotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import apps from "@/data/apps.json";
 
 type Status = "active" | "development" | "inactive";
 
-const statusConfig: Record<Status, { color: string; glow: string; label: string; description: string }> = {
+const statusConfig: Record<Status, { color: string; glow: string; ring: string; label: string; description: string }> = {
   active: {
     color: "bg-green-400",
-    glow: "shadow-[0_0_10px_rgba(74,222,128,0.8)]",
+    glow: "shadow-[0_0_8px_rgba(74,222,128,0.8)]",
+    ring: "ring-green-400/30",
     label: "Active",
     description: "System is live and operational",
   },
   development: {
     color: "bg-blue-400",
-    glow: "shadow-[0_0_10px_rgba(96,165,250,0.8)]",
+    glow: "shadow-[0_0_8px_rgba(96,165,250,0.8)]",
+    ring: "ring-blue-400/30",
     label: "In Development",
     description: "Currently under active development",
   },
   inactive: {
     color: "bg-red-500",
-    glow: "shadow-[0_0_10px_rgba(239,68,68,0.8)]",
+    glow: "shadow-[0_0_8px_rgba(239,68,68,0.8)]",
+    ring: "ring-red-500/30",
     label: "Inactive",
     description: "System is stopped or decommissioned",
   },
@@ -31,9 +34,11 @@ function StatusDot({ status }: { status: Status }) {
   const cfg = statusConfig[status] ?? statusConfig.inactive;
   return (
     <div className="relative group flex items-center justify-center">
-      <span className={`block w-3 h-3 rounded-full ${cfg.color} ${cfg.glow} cursor-default`} />
+      <span
+        className={`block w-2.5 h-2.5 rounded-full ring-4 ${cfg.color} ${cfg.glow} ${cfg.ring} cursor-default flex-shrink-0`}
+      />
       {/* Tooltip */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 hidden group-hover:flex flex-col bg-[#0d1424] border border-white/10 rounded-xl px-4 py-3 shadow-xl min-w-max pointer-events-none">
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 hidden group-hover:flex flex-col bg-[#0d1424] border border-white/10 rounded-xl px-4 py-3 shadow-2xl min-w-max pointer-events-none">
         <span className={`text-sm font-bold font-mono ${status === "active" ? "text-green-400" : status === "development" ? "text-blue-400" : "text-red-400"}`}>
           {cfg.label}
         </span>
@@ -43,56 +48,82 @@ function StatusDot({ status }: { status: Status }) {
   );
 }
 
-export default function AppDashboard({ progress }: { progress: MotionValue<number> }) {
-  // Fade in when logo docks (0.2 → 0.3), fade out when team section appears (0.55 → 0.65)
-  const opacity = useTransform(progress, [0, 0.2, 0.28, 0.55, 0.65], [0, 0, 1, 1, 0]);
-  const y = useTransform(progress, [0.2, 0.28, 0.55, 0.65], ["30px", "0px", "0px", "-20px"]);
+export default function AppDashboard() {
+  const activeCount = apps.filter(a => a.status === "active").length;
+  const devCount = apps.filter(a => a.status === "development").length;
+  const inactiveCount = apps.filter(a => a.status === "inactive").length;
 
   return (
-    <div className="fixed left-0 top-0 w-full h-screen flex items-end justify-center pointer-events-none z-40 px-4 md:px-12 pb-10 md:pb-16">
-      <motion.div
-        className="w-full max-w-6xl"
-        style={{ opacity, y }}
-      >
-        {/* Section header */}
-        <div className="flex items-center gap-3 mb-4">
-          <span className="text-xs font-mono text-ink-400 uppercase tracking-widest">System Registry</span>
-          <div className="flex-1 h-px bg-white/5" />
-          <span className="text-xs font-mono text-ink-400">{apps.length} systems</span>
-        </div>
+    <section id="systems" className="py-24 px-4 md:px-12">
+      <div className="max-w-6xl mx-auto">
+        {/* Section heading */}
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-xs font-mono text-accent-cyan uppercase tracking-widest mb-2">/ Systems Registry</p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-ink-100 mb-6">
+            LGU Applications & Systems
+          </h2>
+
+          {/* Stats pills */}
+          <div className="flex flex-wrap gap-3">
+            <span className="flex items-center gap-2 text-xs font-mono bg-green-400/10 text-green-400 border border-green-400/20 rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              {activeCount} Active
+            </span>
+            <span className="flex items-center gap-2 text-xs font-mono bg-blue-400/10 text-blue-400 border border-blue-400/20 rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              {devCount} In Development
+            </span>
+            <span className="flex items-center gap-2 text-xs font-mono bg-red-500/10 text-red-400 border border-red-400/20 rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              {inactiveCount} Inactive
+            </span>
+          </div>
+        </motion.div>
 
         {/* Table */}
-        <div className="w-full rounded-2xl border border-white/10 overflow-hidden backdrop-blur-md bg-white/[0.02]" style={{ pointerEvents: "auto" }}>
-          {/* Header row */}
-          <div className="grid grid-cols-[40px_48px_1fr_1fr_120px_80px] gap-4 px-6 py-3 border-b border-white/10 bg-white/5">
+        <motion.div
+          className="w-full rounded-2xl border border-white/10 overflow-hidden bg-white/[0.02] backdrop-blur-sm"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {/* Header */}
+          <div className="hidden md:grid grid-cols-[48px_48px_1fr_140px_140px_110px_100px] gap-4 px-6 py-3 border-b border-white/10 bg-white/5">
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest">Status</span>
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest">Icon</span>
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest">Name</span>
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest">Developer</span>
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest">Last Update</span>
+            <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest text-center">Stats</span>
             <span className="text-[10px] font-mono text-ink-400 uppercase tracking-widest text-right">Link</span>
           </div>
 
-          {/* App rows */}
+          {/* Rows */}
           {apps.map((app, i) => {
             const showLink = app.isPublic && app.status === "active" && app.link;
             return (
-              <div
+              <motion.div
                 key={app.id}
-                className={`grid grid-cols-[40px_48px_1fr_1fr_120px_80px] gap-4 items-center px-6 py-4 hover:bg-white/5 transition-colors ${i < apps.length - 1 ? "border-b border-white/5" : ""}`}
+                className={`grid grid-cols-[32px_40px_1fr_auto] md:grid-cols-[48px_48px_1fr_140px_140px_110px_100px] gap-4 items-center px-6 py-4 hover:bg-white/[0.04] transition-colors cursor-default ${i < apps.length - 1 ? "border-b border-white/5" : ""}`}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.04 }}
               >
-                {/* Status dot */}
+                {/* Status */}
                 <StatusDot status={app.status as Status} />
 
                 {/* Icon */}
                 <div className="relative w-8 h-8 flex-shrink-0">
                   {app.icon && (
-                    <Image
-                      src={app.icon}
-                      alt={app.name}
-                      fill
-                      className="object-contain"
-                    />
+                    <Image src={app.icon} alt={app.name} fill className="object-contain" />
                   )}
                 </div>
 
@@ -101,15 +132,29 @@ export default function AppDashboard({ progress }: { progress: MotionValue<numbe
                   {app.name}
                 </span>
 
-                {/* Developer */}
-                <span className="text-sm text-ink-400 font-mono truncate">
+                {/* Developer — hidden on mobile */}
+                <span className="hidden md:block text-sm text-ink-400 font-mono">
                   {app.developer}
                 </span>
 
-                {/* Last Update */}
-                <span className="text-sm text-ink-400 font-mono">
-                  {new Date(app.lastUpdate).toLocaleDateString("en-PH", { year: "numeric", month: "short", day: "numeric" })}
+                {/* Last Update — hidden on mobile */}
+                <span className="hidden md:block text-sm text-ink-400 font-mono">
+                  {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
                 </span>
+
+                {/* View Stats — hidden on mobile */}
+                <div className="hidden md:flex justify-center">
+                  <a
+                    href={`/apps/${app.slug}`}
+                    className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/5 whitespace-nowrap"
+                  >
+                    ⎔ Stats
+                  </a>
+                </div>
 
                 {/* Link */}
                 <div className="flex justify-end">
@@ -118,21 +163,19 @@ export default function AppDashboard({ progress }: { progress: MotionValue<numbe
                       href={app.link!}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-mono text-accent-cyan hover:text-white border border-accent-cyan/30 hover:border-accent-cyan px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/10"
+                      className="text-xs font-mono text-accent-cyan hover:text-white border border-accent-cyan/30 hover:border-accent-cyan px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/10 whitespace-nowrap"
                     >
                       ↗ Visit
                     </a>
                   ) : (
-                    <span className="text-xs font-mono text-ink-400/40 px-3 py-1.5">
-                      —
-                    </span>
+                    <span className="text-xs font-mono text-ink-400/30 px-3 py-1.5">—</span>
                   )}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }

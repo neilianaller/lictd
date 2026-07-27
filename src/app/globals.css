@@ -24,7 +24,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Base overscroll behavior for scroll jacking */
+/* Smooth scrolling */
 html {
-  overscroll-behavior: none;
+  scroll-behavior: smooth;
 }

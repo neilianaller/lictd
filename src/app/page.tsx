@@ -1,9 +1,17 @@
-import ScrollExperience from "@/components/scroll-experience/ScrollExperience";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import AppDashboard from "@/components/scroll-experience/AppDashboard";
+import TeamSection from "@/components/scroll-experience/TeamSection";
+import HeritageSection from "@/components/scroll-experience/HeritageSection";
 
 export default function Home() {
   return (
-    <main>
-      <ScrollExperience />
+    <main className="min-h-screen bg-void">
+      <Navbar />
+      <HeroSection />
+      <AppDashboard />
+      <TeamSection />
+      <HeritageSection />
     </main>
   );
 }
