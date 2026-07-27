@@ -1,11 +1,12 @@
 [
   {
-    "id": "e-bpls",
-    "name": "e-BPLS",
-    "slug": "e-bpls",
+    "id": "website",
+    "name": "LGU Website",
+    "slug": "website",
     "status": "active",
-    "description": "Electronic Business Permit and Licensing System for streamlined application and processing.",
-    "isPublic": true
+    "description": "The official website of the Local Government Unit of Lantapan",
+    "isPublic": true,
+    "icon": ""
   },
   {
     "id": "hris",

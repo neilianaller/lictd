@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import LogoRing from "./LogoRing";
 import AppCardDeal from "./AppCardDeal";
 import TeamSection from "./TeamSection";
+import HeritageSection from "./HeritageSection";
 
 export default function ScrollExperience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,6 +47,9 @@ export default function ScrollExperience() {
 
       {/* Stage 3: Team Section */}
       <TeamSection progress={scrollYProgress} />
+
+      {/* Stage 4: Seal & Heritage */}
+      <HeritageSection progress={scrollYProgress} />
     </div>
   );
 }
