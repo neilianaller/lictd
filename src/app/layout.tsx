@@ -7,6 +7,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hub.lantapan.gov.ph"),
   title: "LICTD Systems Hub",
   description: "Lantapan ICT Division Apps and Systems. Centralized dashboard for all LGU digital platforms and internal systems.",
   icons: {
