@@ -30,10 +30,10 @@ def trigger_remote_pull():
 
     remote_command = (
         f"cd {remote_path} && "
-        f"git pull origin main && "
-        f"npm install && "
-        f"npm run build && "
-        f"pm2 restart lictd"
+        f"sudo git pull origin main && "
+        f"sudo npm install && "
+        f"sudo npm run build && "
+        f"sudo pm2 restart lictd"
     )
 
     print(f"Triggering pull and build on {instance_name}...")
