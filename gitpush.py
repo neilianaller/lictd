@@ -33,7 +33,7 @@ def trigger_remote_pull():
         f"sudo git pull origin main && "
         f"sudo npm install && "
         f"sudo npm run build && "
-        f"sudo pm2 restart lictd"
+        f"pm2 restart lictd"
     )
     
 
