@@ -45,6 +45,7 @@ def trigger_remote_pull():
         "--command", remote_command
     ], check=True)
 
+
 if __name__ == "__main__":
     run_git_commands()
     trigger_remote_pull()
