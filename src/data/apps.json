@@ -29,7 +29,7 @@
     "developer": "Neil",
     "lastUpdate": "2024-08-12",
     "isPublic": false,
-    "icon": "/images/apps/biometrics.png",
+    "icon": "/images/apps/biometrics_logo.png",
     "link": null
   },
   {
@@ -113,6 +113,17 @@
     "id": "hris",
     "name": "Human Resource Information System",
     "slug": "hris",
+    "status": "inactive",
+    "developer": "Neil",
+    "lastUpdate": "2024-08-12",
+    "isPublic": false,
+    "icon": "/images/apps/lguseal.png",
+    "link": null
+  },
+  {
+    "id": "fas",
+    "name": "File Archiving System",
+    "slug": "fas",
     "status": "inactive",
     "developer": "Neil",
     "lastUpdate": "2024-08-12",
