@@ -4,6 +4,21 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import AppStatsClient from "./AppStatsClient";
 
+type Metric = {
+  label: string;
+  value: string | number | null;
+  type: "currency" | "number" | "string" | "date";
+  icon: string;
+  color: string;
+};
+
+type AppStatsData = {
+  lastUpdated: string;
+  metrics: Metric[];
+};
+
+type StatsRecord = Record<string, AppStatsData>;
+
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const app = apps.find((a) => a.slug === params.slug);
   if (!app) return { title: "App Not Found" };
@@ -20,8 +35,7 @@ export default function AppStatsPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  // Type assertion for our generic JSON to allow indexing by string
-  const appStats = (stats as Record<string, any>)[params.slug] || null;
+  const appStats = (stats as StatsRecord)[params.slug] || null;
 
   return <AppStatsClient app={app} appStats={appStats} />;
 }

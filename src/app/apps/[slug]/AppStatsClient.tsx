@@ -18,7 +18,7 @@ type AppData = {
 
 type Metric = {
   label: string;
-  value: any;
+  value: string | number | null;
   type: "currency" | "number" | "string" | "date";
   icon: string;
   color: string;
@@ -29,7 +29,7 @@ type AppStatsData = {
   metrics: Metric[];
 };
 
-function formatValue(value: any, type: Metric["type"]) {
+function formatValue(value: string | number | null, type: Metric["type"]) {
   if (value == null) return "—";
 
   switch (type) {

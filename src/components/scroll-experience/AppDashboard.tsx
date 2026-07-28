@@ -7,6 +7,11 @@ import statsData from "@/data/stats.json";
 
 type Status = "active" | "development" | "inactive";
 
+type StatsEntry = {
+  lastUpdated: string;
+  metrics: unknown[];
+};
+
 const statusConfig: Record<Status, { color: string; glow: string; ring: string; label: string; description: string }> = {
   active: {
     color: "bg-green-400",
@@ -109,7 +114,7 @@ export default function AppDashboard() {
           {/* Rows */}
           {[...apps].sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => {
             const showLink = app.isPublic && app.status === "active" && app.link;
-            const appStats = (statsData as Record<string, any>)[app.slug];
+            const appStats = (statsData as Record<string, StatsEntry>)[app.slug];
             const displayDate = appStats?.lastUpdated || app.lastUpdate;
             return (
               <motion.div
