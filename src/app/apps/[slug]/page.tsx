@@ -28,14 +28,65 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function AppStatsPage({ params }: { params: { slug: string } }) {
+function getTodayManila(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+async function getAicsStats(): Promise<AppStatsData> {
+  const today = getTodayManila();
+  try {
+    const [amountRes, entriesRes] = await Promise.all([
+      fetch("https://mswdo.lantapan.gov.ph/api/total-amount", { next: { revalidate: 3600 } }),
+      fetch("https://mswdo.lantapan.gov.ph/api/total-entries", { next: { revalidate: 3600 } }),
+    ]);
+
+    const amountData = await amountRes.json() as { status: string; total_amount: number };
+    const entriesData = await entriesRes.json() as { status: string; total_entries: number };
+
+    return {
+      lastUpdated: today,
+      metrics: [
+        {
+          label: "Total Funding Disbursed",
+          value: amountData.total_amount ?? null,
+          type: "currency",
+          icon: "₱",
+          color: "gold",
+        },
+        {
+          label: "Total Beneficiaries",
+          value: entriesData.total_entries ?? null,
+          type: "number",
+          icon: "👥",
+          color: "cyan",
+        },
+      ],
+    };
+  } catch {
+    // Fallback to static data on error
+    return (stats as StatsRecord)["aics"] ?? { lastUpdated: today, metrics: [] };
+  }
+}
+
+export default async function AppStatsPage({ params }: { params: { slug: string } }) {
   const app = apps.find((a) => a.slug === params.slug);
 
   if (!app) {
     notFound();
   }
 
-  const appStats = (stats as StatsRecord)[params.slug] || null;
+  let appStats: AppStatsData | null = null;
+
+  if (params.slug === "aics") {
+    appStats = await getAicsStats();
+  } else {
+    appStats = (stats as StatsRecord)[params.slug] ?? null;
+  }
 
   return <AppStatsClient app={app} appStats={appStats} />;
 }
