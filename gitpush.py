@@ -31,7 +31,6 @@ def trigger_remote_pull():
     remote_command = (
         f"cd {remote_path} && "
         f"sudo git fetch origin && sudo git reset --hard origin/main && "
-        # f"sudo npm install && "
         f"sudo npm run build && "
         f"pm2 restart lictd"
     )
