@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import apps from "@/data/apps.json";
+import statsData from "@/data/stats.json";
 
 type Status = "active" | "development" | "inactive";
 
@@ -108,6 +109,8 @@ export default function AppDashboard() {
           {/* Rows */}
           {[...apps].sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => {
             const showLink = app.isPublic && app.status === "active" && app.link;
+            const appStats = (statsData as Record<string, any>)[app.slug];
+            const displayDate = appStats?.lastUpdated || app.lastUpdate;
             return (
               <motion.div
                 key={app.id}
@@ -136,18 +139,20 @@ export default function AppDashboard() {
                     </p>
                     <p className="text-xs text-ink-400 font-mono mt-0.5">{app.developer}</p>
                     <p className="text-xs text-ink-400/60 font-mono">
-                      {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
-                        year: "numeric", month: "short", day: "numeric",
+                      {new Date(displayDate).toLocaleDateString("en-PH", {
+                        year: "numeric", month: "short", day: "numeric", timeZone: "Asia/Manila"
                       })}
                     </p>
                     {/* Action buttons */}
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <a
-                        href={`/apps/${app.slug}`}
-                        className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1 rounded-full transition-all hover:bg-accent-cyan/5"
-                      >
-                        ⎔ Stats
-                      </a>
+                      {app.status === "active" && (
+                        <a
+                          href={`/apps/${app.slug}`}
+                          className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1 rounded-full transition-all hover:bg-accent-cyan/5"
+                        >
+                          ⎔ Stats
+                        </a>
+                      )}
                       {showLink && (
                         <a
                           href={app.link!}
@@ -186,19 +191,23 @@ export default function AppDashboard() {
 
                   {/* Last Update */}
                   <span className="text-sm text-ink-400 font-mono">
-                    {new Date(app.lastUpdate).toLocaleDateString("en-PH", {
-                      year: "numeric", month: "short", day: "numeric",
+                    {new Date(displayDate).toLocaleDateString("en-PH", {
+                      year: "numeric", month: "short", day: "numeric", timeZone: "Asia/Manila"
                     })}
                   </span>
 
                   {/* Stats */}
                   <div className="flex justify-center">
-                    <a
-                      href={`/apps/${app.slug}`}
-                      className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/5 whitespace-nowrap"
-                    >
-                      ⎔ Stats
-                    </a>
+                    {app.status === "active" ? (
+                      <a
+                        href={`/apps/${app.slug}`}
+                        className="text-xs font-mono text-ink-400 hover:text-accent-cyan border border-white/10 hover:border-accent-cyan/30 px-3 py-1.5 rounded-full transition-all hover:bg-accent-cyan/5 whitespace-nowrap"
+                      >
+                        ⎔ Stats
+                      </a>
+                    ) : (
+                      <span className="text-xs font-mono text-ink-400/30 px-3 py-1.5">—</span>
+                    )}
                   </div>
 
                   {/* Link */}

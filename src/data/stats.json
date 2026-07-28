@@ -1,0 +1,90 @@
+{
+  "aics": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Total Funding Disbursed",
+        "value": 17755597.35,
+        "type": "currency",
+        "icon": "₱",
+        "color": "gold"
+      },
+      {
+        "label": "Total Beneficiaries",
+        "value": 4535,
+        "type": "number",
+        "icon": "👥",
+        "color": "cyan"
+      }
+    ]
+  },
+  "biometrics": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Total Employees",
+        "value": 513,
+        "type": "number",
+        "icon": "👥",
+        "color": "gold"
+      },
+      {
+        "label": "Started",
+        "value": "May 2025",
+        "type": "date",
+        "icon": "🗓️",
+        "color": "cyan"
+      }
+    ]
+  },
+  "buksu": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Total Posts",
+        "value": 94,
+        "type": "number",
+        "icon": "📰",
+        "color": "gold"
+      }
+    ]
+  },
+  "website": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Total Clicks",
+        "value": "7.68K",
+        "type": "string",
+        "icon": "",
+        "color": "gold"
+      },
+      {
+        "label": "Total Impressions",
+        "value": "351K",
+        "type": "string",
+        "icon": "📊",
+        "color": "cyan"
+      }
+    ]
+  },
+  "pwd": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Total Records",
+        "value": 258,
+        "type": "number",
+        "icon": "👥",
+        "color": "gold"
+      },
+      {
+        "label": "Total Active",
+        "value": 226,
+        "type": "number",
+        "icon": "👥",
+        "color": "cyan"
+      }
+    ]
+  }
+}
