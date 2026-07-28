@@ -86,5 +86,17 @@
         "color": "cyan"
       }
     ]
+  },
+  "connectv2": {
+    "lastUpdated": "2026-07-28",
+    "metrics": [
+      {
+        "label": "Clients served",
+        "value": 275,
+        "type": "number",
+        "icon": "👥",
+        "color": "gold"
+      }
+    ]
   }
 }

@@ -152,5 +152,16 @@
     "isPublic": false,
     "icon": "/images/apps/systems_hims.png",
     "link": null
+  },
+  {
+    "id": "connectv2",
+    "name": "Lantapan Connect v2",
+    "slug": "connectv2",
+    "status": "active",
+    "developer": "Neil",
+    "lastUpdate": "2026-01-16",
+    "isPublic": false,
+    "icon": "/images/apps/connect-logo.png",
+    "link": null
   }
 ]
