@@ -63,7 +63,7 @@ export default function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
       >
-        <span className="text-[10px] font-mono tracking-widest uppercase">Scroll</span>
+        <span className="text-[10px] font-mono tracking-widest uppercase">explore ↓</span>
         <motion.div
           className="w-px h-8 bg-gradient-to-b from-accent-cyan/60 to-transparent"
           animate={{ scaleY: [0.2, 1, 0.2] }}
