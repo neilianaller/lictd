@@ -115,7 +115,15 @@ export default function AppDashboard() {
           {[...apps].sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => {
             const showLink = app.isPublic && app.status === "active" && app.link;
             const appStats = (statsData as Record<string, StatsEntry>)[app.slug];
-            const displayDate = appStats?.lastUpdated || app.lastUpdate;
+            let displayDate = appStats?.lastUpdated || app.lastUpdate;
+            if (app.slug === "aics" || app.slug === "connectv2") {
+              displayDate = new Intl.DateTimeFormat("en-CA", {
+                timeZone: "Asia/Manila",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              }).format(new Date());
+            }
             return (
               <motion.div
                 key={app.id}

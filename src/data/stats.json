@@ -19,8 +19,15 @@
     ]
   },
   "biometrics": {
-    "lastUpdated": "2026-07-28",
+    "lastUpdated": "2026-07-29",
     "metrics": [
+      {
+        "label": "Offices",
+        "value": 27,
+        "type": "number",
+        "icon": "🏢",
+        "color": "gold"
+      },
       {
         "label": "Total Employees",
         "value": 513,

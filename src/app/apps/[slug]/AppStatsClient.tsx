@@ -19,9 +19,10 @@ type AppData = {
 type Metric = {
   label: string;
   value: string | number | null;
-  type: "currency" | "number" | "string" | "date";
+  type: "currency" | "number" | "string" | "date" | "bar-chart";
   icon: string;
   color: string;
+  chartData?: Record<string, number>;
 };
 
 type AppStatsData = {
@@ -48,6 +49,8 @@ function formatValue(value: string | number | null, type: Metric["type"]) {
         month: "long",
         day: "numeric",
       });
+    case "bar-chart":
+      return null;
     case "string":
     default:
       return String(value);
@@ -169,7 +172,7 @@ export default function AppStatsClient({
               {appStats.metrics.map((metric, idx) => (
                 <motion.div
                   key={idx}
-                  className="flex flex-col justify-between bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-white/[0.04] transition-colors"
+                  className={`flex flex-col justify-between bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 relative overflow-hidden group hover:bg-white/[0.04] transition-colors ${metric.type === "bar-chart" ? "md:col-span-2" : ""}`}
                   initial={{ opacity: 0, scale: 0.95, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 + idx * 0.1, type: "spring", bounce: 0.4 }}
@@ -177,16 +180,43 @@ export default function AppStatsClient({
                   <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                     <span className="text-6xl font-display">{metric.icon}</span>
                   </div>
-                  <span className="text-xs font-mono text-ink-400 uppercase tracking-widest mb-4">
+                  <span className="text-xs font-mono text-ink-400 uppercase tracking-widest mb-4 z-10">
                     {metric.label}
                   </span>
-                  <span
-                    className={`text-3xl md:text-4xl font-display font-bold ${getColorClasses(
-                      metric.color
-                    )}`}
-                  >
-                    {formatValue(metric.value, metric.type)}
-                  </span>
+                  
+                  {metric.type === "bar-chart" && metric.chartData ? (
+                    <div className="mt-4 w-full h-32 flex items-end justify-between gap-1 z-10 border-b border-white/10 pb-2">
+                      {Object.entries(metric.chartData).map(([month, val], i) => {
+                        const maxVal = Math.max(...Object.values(metric.chartData!), 1);
+                        const heightPercent = maxVal > 0 ? `${(val / maxVal) * 100}%` : '0%';
+                        const barColor = metric.color === "gold" ? "bg-accent-gold" : metric.color === "cyan" ? "bg-accent-cyan" : "bg-green-400";
+                        return (
+                          <div key={month} className="flex flex-col items-center flex-1 h-full gap-2 group/bar">
+                            <div className="w-full h-full flex items-end justify-center relative">
+                               <div className="absolute -top-6 text-[10px] text-ink-100 font-mono opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap">
+                                 {val}
+                               </div>
+                               <motion.div 
+                                 initial={{ height: 0 }}
+                                 animate={{ height: heightPercent }}
+                                 transition={{ duration: 0.8, delay: 0.5 + i * 0.05, type: "spring" }}
+                                 className={`w-full max-w-[20px] rounded-t-sm ${barColor}`}
+                               />
+                            </div>
+                            <span className="text-[8px] md:text-[10px] text-ink-400 font-mono uppercase mt-1">{month}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <span
+                      className={`text-3xl md:text-4xl font-display font-bold z-10 ${getColorClasses(
+                        metric.color
+                      )}`}
+                    >
+                      {formatValue(metric.value, metric.type)}
+                    </span>
+                  )}
                 </motion.div>
               ))}
             </div>
