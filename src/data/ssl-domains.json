@@ -1,0 +1,10 @@
+[
+  { "name": "PWD Database", "domain": "pwd.lantapan.gov.ph" },
+  { "name": "LICTD Hub", "domain": "lictd.lantapan.gov.ph" },
+  { "name": "Lantapan Connect", "domain": "connect.lantapan.gov.ph" },
+  { "name": "Lantapan Connect v2", "domain": "connectv2.lantapan.gov.ph" },
+  { "name": "LGU Website", "domain": "lantapan.gov.ph" },
+  { "name": "BukSU Website", "domain": "buksu.lantapan.gov.ph" },
+  { "name": "AICS Information System", "domain": "mswdo.lantapan.gov.ph" },
+  { "name": "Biometric Logs System", "domain": "biometrics.lantapan.gov.ph" }
+]
