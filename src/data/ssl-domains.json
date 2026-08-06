@@ -6,5 +6,6 @@
   { "name": "LGU Website", "domain": "lantapan.gov.ph" },
   { "name": "BukSU Website", "domain": "buksu.lantapan.gov.ph" },
   { "name": "AICS Information System", "domain": "mswdo.lantapan.gov.ph" },
-  { "name": "Biometric Logs System", "domain": "biometrics.lantapan.gov.ph" }
+  { "name": "Biometric Logs System", "domain": "biometrics.lantapan.gov.ph" },
+  { "name": "GSO Inventory Management System", "domain": "gso.lantapan.gov.ph" }
 ]
