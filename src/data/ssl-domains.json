@@ -8,6 +8,6 @@
   { "name": "AICS Information System", "domain": "mswdo.lantapan.gov.ph" },
   { "name": "Biometric Logs System", "domain": "biometrics.lantapan.gov.ph" },
   { "name": "GSO Inventory Management System", "domain": "gso.lantapan.gov.ph" },
-  { "name": "GSO Inventory Management System", "domain": "gso.lantapan.gov.ph" },
+  { "name": "Automated Water Billing System", "domain": "awbs.lantapan.gov.ph" },
   { "name": "Lantapan Traffic Violations System", "domain": "ltmg.lantapan.gov.ph" }
 ]
