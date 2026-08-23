@@ -1,50 +1,55 @@
 import subprocess
 import datetime
+import platform
 
 def run_git_commands():
-    # 1. Get current date and time
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     commit_message = f"Update: {now}"
 
     try:
-        # 2. git add .
+        # 1. Stage changes
         subprocess.run(["git", "add", "."], check=True)
         
-        # 3. git commit -m "date and time"
+        # 2. Commit changes
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
         
-        # 4. git push
-        # Note: This assumes your upstream is already set
+        # 3. Push and set upstream explicitly to main
+        print("Pushing changes to remote main branch...")
         subprocess.run(["git", "push"], check=True)
         
         print(f"Successfully pushed changes with message: '{commit_message}'")
-        
+        return True
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while executing Git commands: {e}")
+        return False
 
 def trigger_remote_pull():
-    instance_name = "lantapan-prod"
+    instance_name = "biometrics-prod"
     zone = "asia-southeast1-b"
     project = "proj-lantapan"
     remote_path = "/var/www/html/lictd"
 
-    remote_command = (
-        f"cd {remote_path} && "
-        f"sudo git fetch origin && sudo git reset --hard origin/main"
-        # f"sudo npm run build && "
-        # f"pm2 restart lictd"
-    )
+    # Enforced 'main' branch for the remote server pull
+    remote_command = f"cd {remote_path} && sudo git pull origin main"
+
+    print(f"🚀 Triggering pull on {instance_name}...")
     
-
-    print(f"Triggering pull and build on {instance_name}...")
-
     subprocess.run([
         "gcloud", "compute", "ssh", instance_name,
         "--zone", zone,
         "--project", project,
         "--command", remote_command
-    ], check=True)
+    ])
+
 
 if __name__ == "__main__":
-    run_git_commands()
-    trigger_remote_pull()
+    if run_git_commands():
+        current_os = platform.system()
+        
+        if current_os == "Windows":
+            print("🪟 Windows detected. Proceeding with remote pull.")
+            trigger_remote_pull()
+        elif current_os == "Darwin":
+            print("🍏 macOS detected. Skipping remote pull.")
+        else:
+            print(f"ℹ️ Other OS detected ({current_os}). Skipping remote pull.")
