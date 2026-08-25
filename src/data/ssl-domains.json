@@ -10,5 +10,6 @@
   { "name": "GSO Inventory Management System", "domain": "gso.lantapan.gov.ph" },
   { "name": "Automated Water Billing System", "domain": "awbs.lantapan.gov.ph" },
   { "name": "Lantapan Traffic Violations System", "domain": "ltmg.lantapan.gov.ph" },
-  { "name": "n8n", "domain": "n8n.lantapan.gov.ph" }
+  { "name": "n8n", "domain": "n8n.lantapan.gov.ph" },
+  { "name": "DocTrack", "domain": "doctrack.lantapan.gov.ph" }
 ]
