@@ -163,5 +163,16 @@
     "isPublic": false,
     "icon": "/images/apps/connect-logo.png",
     "link": null
+  },
+  {
+    "id": "doctrack",
+    "name": "Document Tracking System",
+    "slug": "doctrack",
+    "status": "development",
+    "developer": "Neil",
+    "lastUpdate": "2026-08-27",
+    "isPublic": false,
+    "icon": "/images/apps/systems_doctrack.png",
+    "link": null
   }
 ]
