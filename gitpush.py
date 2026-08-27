@@ -39,7 +39,7 @@ def trigger_remote_pull():
         "--zone", zone,
         "--project", project,
         "--command", remote_command
-    ])
+    ], shell=True)
 
 
 if __name__ == "__main__":
