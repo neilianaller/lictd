@@ -24,7 +24,7 @@ def run_git_commands():
         return False
 
 def trigger_remote_pull():
-    instance_name = "biometrics-prod"
+    instance_name = "lantapan-prod"
     zone = "asia-southeast1-b"
     project = "proj-lantapan"
     remote_path = "/var/www/html/lictd"
