@@ -34,9 +34,9 @@ def trigger_remote_pull():
     # Pull latest code, install dependencies, build Next.js, and reload PM2
     remote_command = (
         f"cd {remote_path} && "
-        f"git pull origin main && "
-        f"npm install && "
-        f"npm run build && "
+        f"sudo git pull origin main && "
+        f"sudo npm install && "
+        f"sudo npm run build && "
         f"pm2 reload all --update-env"
     )
 
