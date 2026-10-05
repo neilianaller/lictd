@@ -56,6 +56,7 @@ def trigger_remote_pull():
     except subprocess.CalledProcessError as e:
         print(f"❌ Failed to execute remote deployment sequence: {e}")
 
+
 if __name__ == "__main__":
     # Only triggers the server deployment if the local git push succeeds
     if run_git_commands():
